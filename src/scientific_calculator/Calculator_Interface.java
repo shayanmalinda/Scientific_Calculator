@@ -1,11 +1,14 @@
 package scientific_calculator;
 
+import static java.lang.System.exit;
+
 public class Calculator_Interface extends javax.swing.JFrame {
     double firstnumber;
     double secondnumber;
-    double result;
+    double result = 0;
     String operation;
     private Object math;
+    boolean flag = false;
     
     public Calculator_Interface() {
         initComponents();
@@ -90,6 +93,11 @@ public class Calculator_Interface extends javax.swing.JFrame {
 
         btnsubstraction.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnsubstraction.setText("-");
+        btnsubstraction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsubstractionActionPerformed(evt);
+            }
+        });
 
         btn6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btn6.setText("6");
@@ -149,6 +157,11 @@ public class Calculator_Interface extends javax.swing.JFrame {
 
         btndivision.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btndivision.setText("/");
+        btndivision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndivisionActionPerformed(evt);
+            }
+        });
 
         btn0.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btn0.setText("0");
@@ -176,6 +189,11 @@ public class Calculator_Interface extends javax.swing.JFrame {
 
         btnequal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnequal.setText("=");
+        btnequal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnequalActionPerformed(evt);
+            }
+        });
 
         btnbackspace.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 28)); // NOI18N
         btnbackspace.setText("←");
@@ -195,9 +213,24 @@ public class Calculator_Interface extends javax.swing.JFrame {
 
         btnsr.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnsr.setText("√");
+        btnsr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsrActionPerformed(evt);
+            }
+        });
 
         btnadd.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnadd.setText("+");
+        btnadd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnaddMouseClicked(evt);
+            }
+        });
+        btnadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddActionPerformed(evt);
+            }
+        });
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.setMinimumSize(new java.awt.Dimension(66, 35));
@@ -333,7 +366,7 @@ public class Calculator_Interface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        exit(0);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
@@ -399,7 +432,10 @@ public class Calculator_Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_btndecimalActionPerformed
 
     private void btnmultiplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmultiplyActionPerformed
-        // TODO add your handling code here:
+        firstnumber = Double.parseDouble(txtdisplay.getText());
+        txtdisplay.setText(null);
+        flag = true;
+        operation = "*";
     }//GEN-LAST:event_btnmultiplyActionPerformed
 
     private void btnbackspaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackspaceActionPerformed
@@ -414,6 +450,7 @@ public class Calculator_Interface extends javax.swing.JFrame {
 
     private void btncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncActionPerformed
         txtdisplay.setText("");
+        result=0;
     }//GEN-LAST:event_btncActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
@@ -441,6 +478,73 @@ public class Calculator_Interface extends javax.swing.JFrame {
     private void txtdisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdisplayActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtdisplayActionPerformed
+
+    private void btnsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsrActionPerformed
+        double op = Double.parseDouble(String.valueOf(txtdisplay.getText()));
+        op = Math.sqrt(op);
+        txtdisplay.setText(String.valueOf(op));
+    }//GEN-LAST:event_btnsrActionPerformed
+
+    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
+        firstnumber = Double.parseDouble(txtdisplay.getText());
+        txtdisplay.setText(null);
+        flag = true;
+        operation = "+";
+        
+    }//GEN-LAST:event_btnaddActionPerformed
+
+    private void btnaddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnaddMouseClicked
+//        firstnumber = Double.parseDouble(String.valueOf(txtdisplay.getText()));
+//        txtdisplay.setText("");
+//        result = result + firstnumber;
+//        txtdisplay.setText(String.valueOf(result));
+    }//GEN-LAST:event_btnaddMouseClicked
+
+    private void btnequalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnequalActionPerformed
+        String answer;
+        
+        secondnumber = Double.parseDouble(txtdisplay.getText());
+       
+        if(operation=="+"){
+            result=firstnumber+secondnumber;
+            answer = String.format("%.2f", result);
+            txtdisplay.setText(answer);
+        }
+        else if(operation=="-"){
+            result=firstnumber-secondnumber;
+            answer = String.format("%.2f", result);
+            txtdisplay.setText(answer);
+        }
+        else if(operation=="*"){
+            result=firstnumber*secondnumber;
+            answer = String.format("%.2f", result);
+            txtdisplay.setText(answer);
+        }
+        else if(operation=="/"){
+            result=firstnumber/secondnumber;
+            answer = String.format("%.2f", result);
+            txtdisplay.setText(answer);
+        }
+        else if(operation=="%"){
+            result=firstnumber%secondnumber;
+            answer = String.format("%.0f", result);
+            txtdisplay.setText(answer);
+        }
+    }//GEN-LAST:event_btnequalActionPerformed
+
+    private void btnsubstractionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubstractionActionPerformed
+        firstnumber = Double.parseDouble(txtdisplay.getText());
+        txtdisplay.setText(null);
+        flag = true;
+        operation = "-";
+    }//GEN-LAST:event_btnsubstractionActionPerformed
+
+    private void btndivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndivisionActionPerformed
+        firstnumber = Double.parseDouble(txtdisplay.getText());
+        txtdisplay.setText(null);
+        flag = true;
+        operation = "/";
+    }//GEN-LAST:event_btndivisionActionPerformed
 
     /**
      * @param args the command line arguments
