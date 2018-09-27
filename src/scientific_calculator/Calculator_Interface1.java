@@ -1,11 +1,8 @@
 package scientific_calculator;
 
-import java.awt.event.KeyEvent;
 import static java.lang.System.exit;
 
-
-
-public class Calculator_Interface extends javax.swing.JFrame {
+public class Calculator_Interface1 extends javax.swing.JFrame {
     double firstnumber;
     double secondnumber;
     double result = 0;
@@ -13,9 +10,7 @@ public class Calculator_Interface extends javax.swing.JFrame {
     private Object math;
     boolean flag = false;
     
-    
-    
-    public Calculator_Interface() {
+    public Calculator_Interface1() {
         initComponents();
     }
 
@@ -53,9 +48,7 @@ public class Calculator_Interface extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximizedBounds(new java.awt.Rectangle(360, 580, 580, 580));
-        setMaximumSize(new java.awt.Dimension(360, 580));
-        setMinimumSize(new java.awt.Dimension(360, 580));
-        setPreferredSize(new java.awt.Dimension(450, 550));
+        setMinimumSize(new java.awt.Dimension(700, 580));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -68,6 +61,11 @@ public class Calculator_Interface extends javax.swing.JFrame {
         btn7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn7ActionPerformed(evt);
+            }
+        });
+        btn7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btn7KeyPressed(evt);
             }
         });
 
@@ -85,11 +83,6 @@ public class Calculator_Interface extends javax.swing.JFrame {
         txtdisplay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtdisplayActionPerformed(evt);
-            }
-        });
-        txtdisplay.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtdisplayKeyPressed(evt);
             }
         });
 
@@ -285,7 +278,7 @@ public class Calculator_Interface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -328,11 +321,11 @@ public class Calculator_Interface extends javax.swing.JFrame {
                         .addComponent(btnsr, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnadd, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(360, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtdisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,15 +411,14 @@ public class Calculator_Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        this.dispose();
-        Calculator_Interface1 a = new Calculator_Interface1();
-        a.setVisible(true);
-        
+        this.setResizable(true);
+        this.setSize(334, 423);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        this.setResizable(true);
-        this.setSize(334, 423);
+        this.dispose();
+        Calculator_Interface a = new Calculator_Interface();
+        a.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
@@ -558,19 +550,9 @@ public class Calculator_Interface extends javax.swing.JFrame {
         operation = "/";
     }//GEN-LAST:event_btndivisionActionPerformed
 
-    private void txtdisplayKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdisplayKeyPressed
-        char c = evt.getKeyChar();
-//        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE))){
-//            getToolkit().beep();
-//            evt.consume();
-//        }
-        if(c == KeyEvent.VK_PLUS){
-            btnaddActionPerformed(null);
-        }
-        if(c == KeyEvent.VK_ENTER){
-            btnequalActionPerformed(null);
-        }
-    }//GEN-LAST:event_txtdisplayKeyPressed
+    private void btn7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn7KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn7KeyPressed
 
     /**
      * @param args the command line arguments
@@ -589,20 +571,21 @@ public class Calculator_Interface extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Calculator_Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculator_Interface1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Calculator_Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculator_Interface1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Calculator_Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculator_Interface1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Calculator_Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculator_Interface1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Calculator_Interface().setVisible(true);
+                new Calculator_Interface1().setVisible(true);
             }
         });
     }
@@ -636,8 +619,4 @@ public class Calculator_Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JTextField txtdisplay;
     // End of variables declaration//GEN-END:variables
-
-    private void btnaddMouseClicked(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
